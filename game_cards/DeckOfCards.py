@@ -26,10 +26,7 @@ class DeckOfCards:
         return
 
     def deal_one(self):
-        """Selects a random card from the deck of cards, removes it and returns it"""
-        if not len(self.deck_of_cards) > 0:
-            return None
-
+        """Selects a random card from the deck and removes it"""
         card = rnd.choice(self.deck_of_cards)
         self.deck_of_cards.remove(card)
         return card

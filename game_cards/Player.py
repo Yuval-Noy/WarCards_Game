@@ -8,12 +8,20 @@ class Player:
     # The number of cards will be chosen in the beginning, default is 26
     # The number of cards won't be higher than 26 and lower than 10
 
-    def __init__(self, name: str, number_of_cards=26):
+    def __init__(self, name, number_of_cards=26):
         """Object constructor, receives player name and his number of cards, initializes a list of deck of cards"""
+
+        if type(name) != str:
+            # name must be a string
+            raise TypeError("Name must be a string!")
+
+        if type(number_of_cards) != int:
+            # number_of_cards must be an integer
+            raise ValueError("Cards number must be int!")
 
         if number_of_cards < 10 or number_of_cards > 26:
             # Number of cards won't be higher than 26 and lower than 10
-            self.deck_of_cards = 26
+            number_of_cards = 26
 
         self.number_of_cards = number_of_cards
         self.name = name
@@ -24,17 +32,26 @@ class Player:
         return f"""Player Name: {self.name}
 Player Hand: {self.deck_of_cards}"""
 
-    def set_hand(self, cards_list: DeckOfCards):
+    def set_hand(self, cards_list):
         """Receives deck of cards and deals random cards for the player as the chosen number"""
+
+        # cards_list must be DeckOfCards
+        if type(cards_list) != DeckOfCards:
+            raise TypeError("Must be type of DeckOfCards!")
+
         for i in range(self.number_of_cards):
             self.deck_of_cards.append(cards_list.deal_one())
 
     def get_card(self):
-        """Selects a random card from the player's deck of cards, removes it and returns it"""
+        """Selects a random card from the player's deck of cards and removes it"""
         card = rnd.choice(self.deck_of_cards)
         self.deck_of_cards.remove(card)
         return card
 
-    def add_card(self, card: Card):
+    def add_card(self, card):
         """Receives a card and add it to the player's deck of cards"""
+
+        if type(card) != Card:
+            raise TypeError("Must be type Card!")
+
         self.deck_of_cards.append(card)
