@@ -30,14 +30,15 @@ class Player:
     def __str__(self):
         """Represent the player name and his deck of cards"""
         return f"""Player Name: {self.name}
-Player Hand: {self.deck_of_cards}"""
+Player Hand: {self.deck_of_cards}
+Player Number of Cards: {len(self.deck_of_cards)}"""
 
     def set_hand(self, cards_list):
         """Receives deck of cards and deals random cards for the player as the chosen number"""
 
         # cards_list must be DeckOfCards
         if type(cards_list) != DeckOfCards:
-            raise TypeError("Must be type of DeckOfCards!")
+            raise TypeError("Must be type DeckOfCards!")
 
         for i in range(self.number_of_cards):
             self.deck_of_cards.append(cards_list.deal_one())
@@ -51,6 +52,7 @@ Player Hand: {self.deck_of_cards}"""
     def add_card(self, card):
         """Receives a card and add it to the player's deck of cards"""
 
+        # card must be type Card
         if type(card) != Card:
             raise TypeError("Must be type Card!")
 

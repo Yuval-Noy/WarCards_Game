@@ -1,8 +1,9 @@
 class Card:
     # Represent a card with value and suit
-    # Values will be between 1-13 while: 1 - Ace, 11 - Jack, 12 - Queen, 13 - King.
-    # Ace has the highest value. (Ace > x)
-    # Suits have numerical values, as: 1 - Diamond; 2 - Spade; 3 - Heart; 4 - Club
+    # Values will be between 1-13
+    # There are some special values, as: 1 = 'Ace', 11 = 'Jack', 12 = 'Queen', 13 = 'King'
+    # Ace has the highest value (Ace > x)
+    # Suits have numerical values, as: 'Diamond' = 1, 'Spade' = 2, 'Heart' = 3, 'Club' = 4
 
     def __init__(self, value, suit):
         """Object constructor, initializes the card"""
@@ -25,14 +26,14 @@ class Card:
     def __gt__(self, other):
         """Card will be greater by his value"""
         if self.value != other.value:
-            # 1 (Ace) has the highest value [Ace > x]
+            # 1 (Ace) has the highest value (Ace > x)
             if self.value == 1 or other.value == 1:
                 return other.value > self.value
 
             return self.value > other.value
 
         else:
-            # Suits have numerical values, while 'Diamond' is the smallest and 'Club' is the highest
+            # Suits have numerical values
             cards_type = ("Diamond", "Spade", "Heart", "Club")
             self_suit = cards_type.index(self.suit)
             other_suit = cards_type.index(other.suit)
